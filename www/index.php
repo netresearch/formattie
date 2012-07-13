@@ -55,6 +55,7 @@
             //$geshi->set_header_type(GESHI_HEADER_DIV);
 
             echo '<pre>' . $geshi->parse_code() . '</pre>';
+            echo 'Size: ' . number_format(strlen($content) / 1024, 2) . 'kiB';
         }
 
         echo '<hr/>';
