@@ -7,7 +7,11 @@
  <body>
   <form action="/" method="POST">
    <a href="/" target="_blank">new tab</a><br/>
-   <textarea id="content" name="content" rows="15" cols="80"><![CDATA[<?php if (isset($_POST['content'])) {echo $_POST['content'];}?>]]></textarea>
+   <textarea id="content" name="content" rows="15" cols="80"><![CDATA[<?php
+if (isset($_POST['content'])) {
+    echo $_POST['content'];
+}
+?>]]></textarea>
    <br/>
    <input type="button" value="Clear" onclick="javascript:document.getElementById('content').value='';"/>
    <input type="submit" value="Submit"/>
