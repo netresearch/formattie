@@ -9,6 +9,7 @@
    <a href="/" target="_blank">new tab</a><br/>
    <textarea id="content" name="content" rows="15" cols="80"><![CDATA[<?php
 if (isset($_POST['content'])) {
+    $_POST['content'] = ltrim($_POST['content']);
     echo $_POST['content'];
 }
 ?>]]></textarea>
