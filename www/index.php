@@ -73,5 +73,12 @@ if (isset($_POST['content'])) {
         echo '<textarea rows="10" cols="80"><![CDATA[' . $nice . ']]></textarea>';
     }
 ?>
+  <script type="text/javascript">
+    var content = document.getElementById('content');
+    content.focus();
+    if (content.value == '') {
+        document.execCommand('paste');
+    }
+  </script>
  </body>
 </html>
