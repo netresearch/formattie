@@ -23,6 +23,12 @@ if (isset($_POST['content'])) {
         if (strpos(substr($content, 0, 64), ':{') !== false) {
             //serialized php variable
             $nice = var_export(unserialize($content), true);
+        } else if ($content{0} == '{' || $content{0} == '[') {
+            //json
+            $nice = json_encode(
+                json_decode($content), JSON_PRETTY_PRINT
+            );
+            echo '<pre>' . htmlspecialchars($nice) . '</pre>';
         } else {
             //xml
             $descriptorspec = array(
