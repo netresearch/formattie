@@ -25,6 +25,9 @@ if (isset($_POST['content'])) {
         ) {
             //URL
             $parts = parse_url($content);
+            if (isset($parts['path'])) {
+                $parts['path'] = urldecode($parts['path']);
+            }
             if (isset($parts['query'])) {
                 parse_str($parts['query'], $queryparts);
                 $parts['query'] = $queryparts;
