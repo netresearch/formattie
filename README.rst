@@ -13,6 +13,8 @@ Supported formats
 
 - XML
 - Serialized PHP variable
+- JSON
+- URLs
 
 
 =======

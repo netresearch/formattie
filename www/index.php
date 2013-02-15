@@ -20,7 +20,18 @@ if (isset($_POST['content'])) {
 <?php
     if (isset($_POST['content'])) {
         $content = $_POST['content'];
-        if ($content{0} == '{' || $content{0} == '[') {
+        if (strpos(substr($content, 0, 10), '://') !== false
+            || substr($content, 0, 7) == 'mailto:'
+        ) {
+            //URL
+            $parts = parse_url($content);
+            if (isset($parts['query'])) {
+                parse_str($parts['query'], $queryparts);
+                $parts['query'] = $queryparts;
+            }
+            $nice = var_export($parts, true);
+            echo '<pre>' . htmlspecialchars($nice) . '</pre>';
+        } else if ($content{0} == '{' || $content{0} == '[') {
             //json
             $nice = json_encode(
                 json_decode($content), JSON_PRETTY_PRINT
