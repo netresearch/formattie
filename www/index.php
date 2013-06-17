@@ -44,6 +44,14 @@ if (isset($_POST['content'])) {
             //serialized php variable
             $nice = var_export(unserialize($content), true);
         } else {
+            if (strpos(substr($content, 0, 60), 'version=\"1.0\"') !== false) {
+                //escaped string copied from e.g. firebug
+                $content = str_replace(
+                    array('\"', '\/', '\n'),
+                    array('"', '/', "\n"),
+                    $content
+                );
+            }
             //xml
             $descriptorspec = array(
                 0 => array('pipe', 'r'),//stdin
