@@ -36,9 +36,22 @@ if (isset($_POST['content'])) {
             echo '<pre>' . htmlspecialchars($nice) . '</pre>';
         } else if ($content{0} == '{' || $content{0} == '[') {
             //json
-            $nice = json_encode(
-                json_decode($content), JSON_PRETTY_PRINT
-            );
+            $data = json_decode($content);
+            if ($data === null) {
+                // Define the errors.
+                $constants = get_defined_constants(true);
+                $json_errors = array();
+                foreach ($constants["json"] as $name => $value) {
+                    if (!strncmp($name, "JSON_ERROR_", 11)) {
+                        $json_errors[$value] = $name;
+                    }
+                }
+                echo '<p class="error">JSON error: ' . $json_errors[json_last_error()] . '</p>';
+            }
+            $nice = json_encode($data, JSON_PRETTY_PRINT);
+            echo '<h2>PHP object</h2>';
+            echo '<pre>' . htmlspecialchars(var_export($data, true)) . '</pre>';
+            echo '<h2>Pretty JSON</h2>';
             echo '<pre>' . htmlspecialchars($nice) . '</pre>';
         } else if (strpos(substr($content, 0, 64), ':{') !== false) {
             //serialized php variable
