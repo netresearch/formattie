@@ -14,8 +14,8 @@ if (isset($_POST['content'])) {
 }
 ?>]]></textarea>
    <br/>
-   <input type="button" value="Clear" onclick="javascript:document.getElementById('content').value='';"/>
    <input type="submit" value="Submit"/>
+   <input type="button" value="Clear" onclick="javascript:document.getElementById('content').value='';"/>
   </form>
 <?php
     if (isset($_POST['content'])) {
