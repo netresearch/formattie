@@ -16,10 +16,18 @@ if (isset($_POST['content'])) {
    <br/>
    <input type="submit" value="Submit"/>
    <input type="button" value="Clear" onclick="javascript:document.getElementById('content').value='';"/>
+   <label><input type="checkbox" name="fixJsonEscaping"/> Fix JSON escaping</label>
   </form>
 <?php
     if (isset($_POST['content'])) {
         $content = $_POST['content'];
+        if (isset($_POST['fixJsonEscaping'])) {
+            $content = str_replace(
+                array('\n', '\\"', '\\/'),
+                array("\n", '"', '/'),
+                $content
+            );
+        }
         if (strpos(substr($content, 0, 10), '://') !== false
             || substr($content, 0, 7) == 'mailto:'
         ) {
