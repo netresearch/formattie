@@ -28,7 +28,23 @@ if (isset($_POST['content'])) {
                 $content
             );
         }
-        if (strpos(substr($content, 0, 10), '://') !== false
+        if (is_numeric($content) && strlen(trim($content)) <= 10) {
+            //unix timestamp
+            $content = trim($content);
+            $nice = 'UTC:   ' . gmdate('c', $content) . "\n"
+                . 'Local: ' . date('c', $content);
+
+            echo '<table>'
+                . '<caption>Unix timestamp</caption>'
+                . '<tr><th colspan="2" align="left">Timestamp</th>'
+                . '<td><tt>' . $content . '</tt></td></tr>'
+                . '<tr><th colspan="2" align="left">UTC date</th>'
+                . '<td><tt>' . gmdate('c', $content) . '</tt></td></tr>'
+                . '<tr><th>Local date</th>'
+                . '<td>' . date('T P, e') . '</td>'
+                . '<td><tt>' . date('c', $content) . '</tt></td></tr>'
+            . '</table>';
+        } else if (strpos(substr($content, 0, 10), '://') !== false
             || substr($content, 0, 7) == 'mailto:'
         ) {
             //URL
