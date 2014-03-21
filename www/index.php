@@ -95,7 +95,7 @@ if (isset($_POST['content'])) {
                 1 => array('pipe', 'w'),//stdout
                 2 => array('pipe', 'w') //stderr
             );
-            $process = proc_open('xmllint --format -', $descriptorspec, $pipes);
+            $process = proc_open('xmllint --recover --format -', $descriptorspec, $pipes);
             if (!is_resource($process)) {
                 die(
                     '<div class="alert alert-error">'
