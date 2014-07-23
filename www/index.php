@@ -119,7 +119,7 @@ if (isset($_POST['content'])) {
                 echo '<div style="border:1px solid red;">Error> ' . htmlspecialchars($errors) . '</div>';
             }
 
-            require_once 'MediaWiki/geshi/geshi/geshi.php';
+            require_once 'geshi.php';
             $geshi = new \GeSHi($nice, 'xml');
             //$geshi->enable_line_numbers(GESHI_NORMAL_LINE_NUMBERS);
             //$geshi->set_header_type(GESHI_HEADER_DIV);
