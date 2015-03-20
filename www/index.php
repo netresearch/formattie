@@ -73,9 +73,9 @@ if (isset($_POST['content'])) {
                 echo '<p class="error">JSON error: ' . $json_errors[json_last_error()] . '</p>';
             }
             $nice = json_encode($data, JSON_PRETTY_PRINT);
-            echo '<h2>PHP object</h2>';
-            echo '<pre>' . htmlspecialchars(var_export($data, true)) . '</pre>';
-            echo '<h2>Pretty JSON</h2>';
+            //echo '<h2>PHP object</h2>';
+            //echo '<pre>' . htmlspecialchars(var_export($data, true)) . '</pre>';
+            echo '<h2 id="json">Pretty JSON</h2>';
             echo '<pre>' . htmlspecialchars($nice) . '</pre>';
         } else if (strpos(substr($content, 0, 64), ':{') !== false) {
             //serialized php variable
